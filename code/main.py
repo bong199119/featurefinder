@@ -19,8 +19,10 @@ class MainWindow(QMainWindow):
 
         # 이미지를 표시할 QLabel 위젯 생성
         self.image_label = QLabel(self)
-        self.image_label.setScaledContents(True)
-        self.image_label.resize(2000, 1200)
+        self.image_label.setScaledContents(False)
+        # self.image_label.resize(2000, 1200)
+        self.image_label.setFixedSize(1000, 800)
+        self.image_label.setStyleSheet("color: #FF5733; border-style: solid; border-width: 2px; border-color: #FFC300; border-radius: 10px; ")
 
         # 이미지 이름을 저장할 체크박스 위젯 생성
         # self.save_checkbox = QCheckBox('이미지 이름 저장', self)
@@ -66,12 +68,15 @@ class MainWindow(QMainWindow):
         self.len_images = len(image_paths)
         # 첫번째 이미지를 QLabel 위젯에 표시
         pixmap = QPixmap(image_paths[self.index])
+        pixmap = pixmap.scaledToWidth(1000)
         self.image_label.setPixmap(pixmap)
+
         
 
     def load_image(self):        
         # 첫번째 이미지를 QLabel 위젯에 표시
         pixmap = QPixmap(self.image_paths[self.index])
+        pixmap = pixmap.scaledToWidth(1000)
         self.image_label.setPixmap(pixmap)
 
         # # 이미지 이름 저장 체크박스가 체크된 경우, 모든 이미지 이름을 파일에 저장
